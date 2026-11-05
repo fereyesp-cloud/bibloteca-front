@@ -1,0 +1,19 @@
+<h2>Detalle del libro</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (libro(); as l) {
+  <dl>
+    <dt>ID</dt>               <dd>{{ l.id }}</dd>
+    <dt>Título</dt>           <dd>{{ l.titulo }}</dd>
+    <dt>Autor</dt>            <dd>{{ l.autor }}</dd>
+    <dt>Año de publicación</dt> <dd>{{ l.anioPublicacion }}</dd>
+    <dt>Género</dt>           <dd>{{ l.genero }}</dd>
+  </dl>
+
+  <a [routerLink]="['/libros/editar', l.id]">Editar</a>
+}
+
+<a routerLink="/libros">Volver</a>

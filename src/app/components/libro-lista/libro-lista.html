@@ -1,0 +1,36 @@
+<a routerLink="/libros/nuevo">Nuevo libro</a>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Año</th>
+      <th>Género</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (libro of libros(); track libro.id) {
+      <tr>
+        <td>{{ libro.id }}</td>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.autor }}</td>
+        <td>{{ libro.anioPublicacion }}</td>
+        <td>{{ libro.genero }}</td>
+        <td>
+          <a [routerLink]="['/libros', libro.id]">Ver</a>
+          <a [routerLink]="['/libros/editar', libro.id]">Editar</a>
+          <button (click)="eliminar(libro.id!)">Eliminar</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr><td colspan="6">No hay libros registrados</td></tr>
+    }
+  </tbody>
+</table>

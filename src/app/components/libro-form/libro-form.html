@@ -1,0 +1,42 @@
+<h2>{{ id ? 'Editar libro' : 'Nuevo libro' }}</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <label>
+    Título
+    <input formControlName="titulo" />
+  </label>
+  @if (form.controls.titulo.touched && form.controls.titulo.invalid) {
+    <small class="error">El título es obligatorio</small>
+  }
+
+  <label>
+    Autor
+    <input formControlName="autor" />
+  </label>
+  @if (form.controls.autor.touched && form.controls.autor.invalid) {
+    <small class="error">El autor es obligatorio</small>
+  }
+
+  <label>
+    Año de publicación
+    <input type="number" formControlName="anioPublicacion" />
+  </label>
+  @if (form.controls.anioPublicacion.touched && form.controls.anioPublicacion.invalid) {
+    <small class="error">Ingresa un año válido</small>
+  }
+
+  <label>
+    Género
+    <input formControlName="genero" />
+  </label>
+  @if (form.controls.genero.touched && form.controls.genero.invalid) {
+    <small class="error">El género es obligatorio</small>
+  }
+
+  <button type="submit">Guardar</button>
+  <a routerLink="/libros">Cancelar</a>
+</form>
